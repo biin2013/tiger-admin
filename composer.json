@@ -22,7 +22,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "AdminServiceProvider"
+        "Biin2013\\Tiger\\Admin\\AdminServiceProvider"
       ],
       "aliases": {
         "Admin": "Biin2013\\Tiger\\Admin\\Facades\\Admin"
