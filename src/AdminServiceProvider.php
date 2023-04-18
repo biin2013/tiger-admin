@@ -18,6 +18,7 @@ class AdminServiceProvider extends ServiceProvider
      * @var array|string[]
      */
     private array $commands = [
+        InitUser::class,
         Install::class,
         Menu::class
     ];
