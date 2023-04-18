@@ -26,9 +26,7 @@ class AdminServiceProvider extends ServiceProvider
     /**
      * @var array|string[]
      */
-    private array $testCommands = [
-        InitUser::class
-    ];
+    private array $testCommands = [];
 
     public function register(): void
     {
