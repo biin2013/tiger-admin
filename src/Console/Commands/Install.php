@@ -13,7 +13,7 @@ class Install extends Command
     {
         $this->info('start install');
 
-        $this->call('vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"');
+        $this->call('vendor:publish', ['--provider' => 'Spatie\Permission\PermissionServiceProvider']);
         $this->call('migrate');
         $this->call('admin:init:user');
 
