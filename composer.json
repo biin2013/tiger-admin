@@ -1,0 +1,57 @@
+{
+  "name": "biin2013/tiger-admin",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Biin2013\\Tiger\\Admin\\": "src/",
+      "Biin2013\\Tiger\\Admin\\Database\\Factories\\": "database/factories"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Biin2013\\Tiger\\Admin\\Tests\\": "tests"
+    }
+  },
+  "authors": [
+    {
+      "name": "biin2013",
+      "email": "chenbin_2010@sina.com"
+    }
+  ],
+  "extra": {
+    "laravel": {
+      "providers": [
+        "AdminServiceProvider"
+      ],
+      "aliases": {
+        "Admin": "Biin2013\\Tiger\\Admin\\Facades\\Admin"
+      }
+    }
+  },
+  "require": {
+    "php": "^8.1",
+    "biin2013/tiger": "^1.0",
+    "spatie/laravel-permission": "^5.10"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^8.4",
+    "phpstan/phpstan": "^1.10"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "@php ./vendor/bin/testbench package:discover --ansi"
+    ],
+    "analyse": "vendor/bin/phpstan analyse",
+    "test": "vendor/bin/phpunit --exclude-group command",
+    "test-unit": "vendor/bin/phpunit --group unit",
+    "test-unit-filter": "vendor/bin/phpunit --group unit --filter",
+    "test-feature": "vendor/bin/phpunit --group feature",
+    "test-feature-filter": "vendor/bin/phpunit --group feature --filter",
+    "test-c": "vendor/bin/phpunit --group command --filter",
+    "test-migrate": "vendor/bin/phpunit --group command --filter migrate"
+  }
+}
