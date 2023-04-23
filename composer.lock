@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "47382377a6d95b34d519f0562cb6a5f3",
+    "content-hash": "e00966d10796bd5e1ab1eeb4cd728a5a",
     "packages": [
         {
             "name": "biin2013/tiger",
-            "version": "1.0.2",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/biin2013/tiger.git",
-                "reference": "2f35c691d9d3eb3e0a5d3da9c1f52d9ec5121167"
+                "reference": "7c2b12ebec8d738896d6c72bbd46bfce97efa9ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/biin2013/tiger/zipball/2f35c691d9d3eb3e0a5d3da9c1f52d9ec5121167",
-                "reference": "2f35c691d9d3eb3e0a5d3da9c1f52d9ec5121167",
+                "url": "https://api.github.com/repos/biin2013/tiger/zipball/7c2b12ebec8d738896d6c72bbd46bfce97efa9ab",
+                "reference": "7c2b12ebec8d738896d6c72bbd46bfce97efa9ab",
                 "shasum": ""
             },
             "require": {
@@ -48,9 +48,9 @@
             ],
             "support": {
                 "issues": "https://github.com/biin2013/tiger/issues",
-                "source": "https://github.com/biin2013/tiger/tree/1.0.2"
+                "source": "https://github.com/biin2013/tiger/tree/1.0.4"
             },
-            "time": "2023-04-16T08:10:02+00:00"
+            "time": "2023-04-23T03:53:25+00:00"
         },
         {
             "name": "brick/math",
