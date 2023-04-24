@@ -6,9 +6,12 @@ use Biin2013\Tiger\Admin\Admin as AdminConcrete;
 use Biin2013\Tiger\Admin\Console\Commands\InitUser;
 use Biin2013\Tiger\Admin\Console\Commands\Install;
 use Biin2013\Tiger\Admin\Console\Commands\Menu;
+use Biin2013\Tiger\Admin\Events\Login;
 use Biin2013\Tiger\Admin\Facades\Admin;
+use Biin2013\Tiger\Admin\Listeners\LoginLog;
 use Biin2013\Tiger\Middleware\ErrorScope;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -45,6 +48,7 @@ class AdminServiceProvider extends ServiceProvider
         $this->registerCommands();
         $this->registerMenu();
         $this->registerSuperAdmin();
+        $this->registerEvent();
     }
 
     private function registerMiddleware(): void
@@ -100,5 +104,10 @@ class AdminServiceProvider extends ServiceProvider
     private function registerSuperAdmin(): void
     {
         Gate::before(fn($user) => $user->isSuperAdmin());
+    }
+
+    private function registerEvent(): void
+    {
+        Event::listen(Login::class, [LoginLog::class, 'handle']);
     }
 }

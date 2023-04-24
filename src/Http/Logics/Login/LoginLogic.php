@@ -3,8 +3,8 @@
 namespace Biin2013\Tiger\Admin\Http\Logics\Login;
 
 use Biin2013\Tiger\Admin\Enums\LoginStatus;
+use Biin2013\Tiger\Admin\Events\Login;
 use Biin2013\Tiger\Admin\Http\Logics\AdminLogic;
-use Biin2013\Tiger\Admin\Models\Log\Login;
 use Biin2013\Tiger\Admin\Models\System\User;
 use Biin2013\Tiger\Exceptions\ValidationException;
 use Biin2013\Tiger\Support\Response;
@@ -62,15 +62,15 @@ class LoginLogic extends AdminLogic
             'brief'
         ]);
         if (!$user) {
-            $this->addLoginLogs($data, LoginStatus::USERNAME);
+            $this->fireLoginEvent($data, LoginStatus::USERNAME);
             throw new ValidationException(10107);
         }
         if (!Hash::check($data['password'], $user->password)) {
-            $this->addLoginLogs($data, LoginStatus::PASSWORD, $user);
+            $this->fireLoginEvent($data, LoginStatus::PASSWORD, $user);
             throw new ValidationException(10108);
         }
 
-        $this->addLoginLogs($data, LoginStatus::SUCCESS, $user);
+        $this->fireLoginEvent($data, LoginStatus::SUCCESS, $user);
         return $user;
     }
 
@@ -105,14 +105,14 @@ class LoginLogic extends AdminLogic
      * @param LoginStatus $status
      * @param User|null $user
      */
-    private function addLoginLogs(array $data, LoginStatus $status, ?User $user = null): void
+    private function fireLoginEvent(array $data, LoginStatus $status, ?User $user = null): void
     {
-        Login::query()->create([
-            'username' => $data['username'],
-            'user_id' => $user && $user['id'],
-            'ip' => request()->ip(),
-            'agent' => request()->userAgent(),
-            'status' => $status
-        ]);
+        Login::dispatch(
+            $data['username'],
+            $user['id'] ?? 0,
+            request()->ip(),
+            request()->userAgent(),
+            $status
+        );
     }
 }
