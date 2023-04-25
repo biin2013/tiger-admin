@@ -116,7 +116,7 @@ class LoginLogic extends AdminLogic
             $data['username'],
             $user['id'] ?? 0,
             request()->ip(),
-            request()->userAgent(),
+            $data['device'] . '|' . request()->userAgent(),
             $status
         );
     }

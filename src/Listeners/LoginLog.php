@@ -13,7 +13,7 @@ class LoginLog
             'username' => $event->username,
             'user_id' => $event->userid,
             'ip' => $event->ip,
-            'agent' => $event->agent,
+            'device' => $event->device,
             'status' => $event->status
         ]);
     }

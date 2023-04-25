@@ -13,7 +13,7 @@ class CreateAdminUserLoginLogsTable extends Migration
             $table->unsignedBigInteger('user_id')->default(0)->index('user_id');
             $table->string('username', 45)->index('username');
             $table->unsignedBigInteger('ip');
-            $table->string('agent')->default('');
+            $table->string('device')->default('');
             $table->unsignedTinyInteger('status')->index('status');
             $table->timestamp('created_at');
         });

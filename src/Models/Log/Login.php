@@ -14,7 +14,7 @@ class Login extends AdminModel
         'user_id',
         'username',
         'ip',
-        'agent',
+        'device',
         'status'
     ];
 

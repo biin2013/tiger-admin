@@ -16,8 +16,8 @@ class Login
     public function __construct(
         public string      $username,
         public int         $userid,
-        public string      $ip,
-        public string      $agent,
+        public int         $ip,
+        public string      $device,
         public LoginStatus $status
     )
     {
