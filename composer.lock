@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "biin2013/tiger",
-            "version": "1.0.4",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/biin2013/tiger.git",
-                "reference": "7c2b12ebec8d738896d6c72bbd46bfce97efa9ab"
+                "reference": "c97ed2e3fd234ead535e956ce140bbe09b3c4319"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/biin2013/tiger/zipball/7c2b12ebec8d738896d6c72bbd46bfce97efa9ab",
-                "reference": "7c2b12ebec8d738896d6c72bbd46bfce97efa9ab",
+                "url": "https://api.github.com/repos/biin2013/tiger/zipball/c97ed2e3fd234ead535e956ce140bbe09b3c4319",
+                "reference": "c97ed2e3fd234ead535e956ce140bbe09b3c4319",
                 "shasum": ""
             },
             "require": {
@@ -48,9 +48,9 @@
             ],
             "support": {
                 "issues": "https://github.com/biin2013/tiger/issues",
-                "source": "https://github.com/biin2013/tiger/tree/1.0.4"
+                "source": "https://github.com/biin2013/tiger/tree/1.0.5"
             },
-            "time": "2023-04-23T03:53:25+00:00"
+            "time": "2023-04-25T03:06:26+00:00"
         },
         {
             "name": "brick/math",
