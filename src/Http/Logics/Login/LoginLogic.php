@@ -12,11 +12,14 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class LoginLogic extends AdminLogic
 {
+    protected bool $dbTransaction = false;
+
     /**
      * @param array<mixed>|null $routeParams
      * @param array<string, mixed> $data
@@ -26,21 +29,23 @@ class LoginLogic extends AdminLogic
     protected function run(?array $routeParams, array $data): array|JsonResponse|Arrayable
     {
         $user = $this->attempt($data);
-        $token = $user->createToken($data['device']);
-        $accessToken = $token->accessToken->fresh();
-        $response = [
-            'user_info' => $user->toArray(),
-            'access_token' => [
-                'status' => $accessToken->getAttribute('status'),
-                'token' => $token->plainTextToken
-            ]
-        ];
+        return DB::transaction(function () use ($user, $data) {
+            $token = $user->createToken($data['device']);
+            $accessToken = $token->accessToken->fresh();
+            $response = [
+                'user_info' => $user->toArray(),
+                'access_token' => [
+                    'status' => $accessToken->getAttribute('status'),
+                    'token' => $token->plainTextToken
+                ]
+            ];
 
-        if ($this->needUpdatePassword($user)) {
-            return $this->updatePasswordResponse($user, $response);
-        }
+            if ($this->needUpdatePassword($user)) {
+                return $this->updatePasswordResponse($user, $response);
+            }
 
-        return $response;
+            return $response;
+        });
     }
 
     /**
